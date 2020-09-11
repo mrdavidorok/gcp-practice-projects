@@ -1,0 +1,30 @@
+#QWIKLAB TITLE : AK8S-05 Upgrading Kubernetes Engine Clusters
+
+
+#lab setup 
+#Make sure you signed into Qwiklabs using an incognito window
+#Note the lab's access time
+#sign in to Cloud Platform Console
+#Activate Google Cloud Shell
+
+#list the active account name
+--gcloud auth list
+
+#list the project ID
+--gcloud config list project
+
+#Task 1. Deploy GKE clusters
+
+#Set the environment variable for the zone and cluster name
+--export my_zone=us-central1-a
+--export my_cluster=standard-cluster-1
+
+#create a Kubernetes cluster
+--gcloud container clusters create $my_cluster --num-nodes 3 --zone $my_zone --enable-ip-alias
+
+#Task 2: Upgrade your GKE cluster
+
+#upgrade standard-cluster-1 to have three nodes
+--gcloud container clusters resize $my_cluster --zone $my_zone --size=3
+
+#When prompted with Do you want to continue (Y/n), press y to confirm.
